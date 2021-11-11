@@ -2,6 +2,7 @@
 
 # RORIES API
 Movies API with Ruby on Rails API
+![database](docs/database.png)
 
 # Installation
 ## Prerequisites
