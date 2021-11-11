@@ -19,6 +19,12 @@ gem 'puma', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Image Processing -> https://github.com/carrierwaveuploader/carrierwave
+gem 'carrierwave', '~> 2.0'
+
+# https://github.com/rheaton/carrierwave-video
+gem 'carrierwave-video'
+
 # Authentication -> https://github.com/heartcombo/devise
 gem 'devise', github: 'heartcombo/devise', branch: 'master'
 
