@@ -1,5 +1,7 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d0a6de7fa889487f9611ee74b8b7d8a7)](https://www.codacy.com/gh/nejdetkadir/rories-api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nejdetkadir/rories-api&amp;utm_campaign=Badge_Grade)
+
 # RORIES API
-Sample API application like [imdb.com](https://www.imdb.com)
+Movies API with Ruby on Rails API
 
 # Installation
 ## Prerequisites
