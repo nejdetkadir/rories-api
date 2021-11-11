@@ -22,11 +22,14 @@ gem 'puma', '~> 5.0'
 # Authentication -> https://github.com/heartcombo/devise
 gem 'devise', github: 'heartcombo/devise', branch: 'master'
 
+# JWT extension of devise gem -> https://github.com/waiting-for-dev/devise-jwt
+gem 'devise-jwt'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -40,6 +43,9 @@ group :development, :test do
 
   # https://github.com/thoughtbot/factory_bot_rails
   gem 'factory_bot_rails'
+
+  # https://github.com/bkeepers/dotenv
+  gem 'dotenv-rails'
 end
 
 group :development do
