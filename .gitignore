@@ -28,3 +28,6 @@
 
 # env
 .env
+
+# carrierwave
+uploads
