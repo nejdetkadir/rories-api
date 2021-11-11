@@ -25,6 +25,9 @@ gem 'devise', github: 'heartcombo/devise', branch: 'master'
 # JWT extension of devise gem -> https://github.com/waiting-for-dev/devise-jwt
 gem 'devise-jwt'
 
+# https://github.com/jfelchner/ruby-progressbar
+gem 'ruby-progressbar'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

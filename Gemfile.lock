@@ -193,6 +193,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    ruby-progressbar (1.11.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -233,6 +234,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.1)
   rspec-rails (~> 5.0.0)
+  ruby-progressbar
   spring
   tzinfo-data
 
