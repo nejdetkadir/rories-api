@@ -19,6 +19,9 @@ gem 'puma', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Pagination -> https://github.com/kaminari/kaminari
+gem 'kaminari'
+
 # Image Processing -> https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave', '~> 2.0'
 
