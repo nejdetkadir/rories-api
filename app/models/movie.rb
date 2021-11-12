@@ -10,6 +10,9 @@ class Movie < ApplicationRecord
   # relations
   has_many :user_following, as: :followable
   has_many :following, through: :user_following, source: :followable, source_type: "Movie"
+  
+  has_many :movie_cast
+  has_many :cast, through: :movie_cast
 
   def set_success(format, opts)
     self.success = true

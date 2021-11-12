@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_131729) do
+ActiveRecord::Schema.define(version: 2021_11_12_145746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2021_11_12_131729) do
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "movie_cast", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "movie_id", null: false
+    t.uuid "cast_id", null: false
+    t.integer "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cast_id"], name: "index_movie_cast_on_cast_id"
+    t.index ["movie_id"], name: "index_movie_cast_on_movie_id"
   end
 
   create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -72,5 +82,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_131729) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "movie_cast", "\"cast\"", column: "cast_id"
+  add_foreign_key "movie_cast", "movies"
   add_foreign_key "user_following", "users"
 end

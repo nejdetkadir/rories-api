@@ -73,4 +73,9 @@ RSpec.describe Movie, type: :model do
     model = described_class.reflect_on_association(:user_following)
     expect(model.macro).to eq(:has_many)
   end
+
+  it "should have many cast" do
+    model = described_class.reflect_on_association(:movie_cast)
+    expect(model.macro).to eq(:has_many)
+  end
 end

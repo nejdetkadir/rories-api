@@ -43,4 +43,14 @@ RSpec.describe Cast, type: :model do
     model = described_class.reflect_on_association(:user_following)
     expect(model.macro).to eq(:has_many)
   end
+
+  it "should have many movies" do
+    model = described_class.reflect_on_association(:movie_cast)
+    expect(model.macro).to eq(:has_many)
+  end
+
+  it "can not to be same role in a movie" do
+    model = create(:movie_cast, cast: create(:cast), movie: create(:movie))
+    expect(model.dup).not_to be_valid
+  end
 end
