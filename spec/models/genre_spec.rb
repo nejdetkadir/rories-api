@@ -24,4 +24,9 @@ RSpec.describe Genre, type: :model do
     model = described_class.reflect_on_association(:user_following)
     expect(model.macro).to eq(:has_many)
   end
+
+  it "should have many movies" do
+    model = described_class.reflect_on_association(:movie_genres)
+    expect(model.macro).to eq(:has_many)
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_145746) do
+ActiveRecord::Schema.define(version: 2021_11_12_161407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_11_12_145746) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cast_id"], name: "index_movie_cast_on_cast_id"
     t.index ["movie_id"], name: "index_movie_cast_on_movie_id"
+  end
+
+  create_table "movie_genres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "movie_id", null: false
+    t.uuid "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_movie_genres_on_genre_id"
+    t.index ["movie_id"], name: "index_movie_genres_on_movie_id"
   end
 
   create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -84,5 +93,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_145746) do
 
   add_foreign_key "movie_cast", "\"cast\"", column: "cast_id"
   add_foreign_key "movie_cast", "movies"
+  add_foreign_key "movie_genres", "genres"
+  add_foreign_key "movie_genres", "movies"
   add_foreign_key "user_following", "users"
 end

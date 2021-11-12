@@ -14,6 +14,9 @@ class Movie < ApplicationRecord
   has_many :movie_cast
   has_many :cast, through: :movie_cast
 
+  has_many :movie_genres
+  has_many :genres, through: :movie_genres
+
   def set_success(format, opts)
     self.success = true
   end

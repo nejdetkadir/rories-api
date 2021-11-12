@@ -78,4 +78,14 @@ RSpec.describe Movie, type: :model do
     model = described_class.reflect_on_association(:movie_cast)
     expect(model.macro).to eq(:has_many)
   end
+
+  it "should have many genres" do
+    model = described_class.reflect_on_association(:movie_genres)
+    expect(model.macro).to eq(:has_many)
+  end
+
+  it "should have not same genre" do
+    model = create(:movie_genre, movie: create(:movie))
+    expect(model.dup).not_to be_valid
+  end
 end
