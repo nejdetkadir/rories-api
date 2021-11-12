@@ -7,6 +7,10 @@ class Movie < ApplicationRecord
   mount_uploader :cover, ImageUploader
   mount_uploader :trailer, TrailerUploader
 
+  # relations
+  has_many :user_following, as: :followable
+  has_many :following, through: :user_following, source: :followable, source_type: "Movie"
+
   def set_success(format, opts)
     self.success = true
   end

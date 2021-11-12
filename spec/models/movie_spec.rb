@@ -68,4 +68,9 @@ RSpec.describe Movie, type: :model do
     model = build(:movie, minimum_age: nil)
     expect(model).to be_valid
   end
+
+  it "should have many following" do
+    model = described_class.reflect_on_association(:user_following)
+    expect(model.macro).to eq(:has_many)
+  end
 end

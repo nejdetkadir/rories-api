@@ -19,4 +19,9 @@ RSpec.describe Genre, type: :model do
     model = create(:genre)
     expect(model.dup).not_to be_valid  
   end
+
+  it "should have many following" do
+    model = described_class.reflect_on_association(:user_following)
+    expect(model.macro).to eq(:has_many)
+  end
 end
