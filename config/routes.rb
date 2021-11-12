@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   scope :api, module: :api, constraints: { format: :json } do
     scope :v1, module: :v1 do
       devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
+
+      # resources
+      resources :genres, only: [:index, :show]
     end
   end
 end
