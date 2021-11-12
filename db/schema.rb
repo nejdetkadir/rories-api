@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_225444) do
+ActiveRecord::Schema.define(version: 2021_11_11_234422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,21 @@ ActiveRecord::Schema.define(version: 2021_11_11_225444) do
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "movies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "storyline", default: "", null: false
+    t.string "cover", null: false
+    t.string "trailer"
+    t.string "imdb_id", default: "", null: false
+    t.decimal "imdb_rating", precision: 10, scale: 2
+    t.integer "minimum_age"
+    t.integer "minutes", null: false
+    t.integer "released_at", null: false
+    t.boolean "success", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
