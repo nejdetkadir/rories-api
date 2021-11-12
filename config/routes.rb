@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       # resources
       resources :genres, only: [:index, :show]
+      resources :cast, only: [:show]
     end
   end
 end
