@@ -5,7 +5,7 @@ RSpec.describe Cast, type: :model do
     model = described_class.new(
       fullname: "Johnny Depp",
       biography: "John Christopher Depp II is an American actor, producer, and musician.",
-      remote_image_url: Faker::LoremPixel.image
+      image: File.open(Rails.root.join("spec", "fixtures", "files", "images", "placeholder.png"))
     )
     expect(model).to be_valid
   end

@@ -5,7 +5,8 @@ RSpec.describe Movie, type: :model do
     model = described_class.new(
       title: "The Fast and the Furious: Tokyo Drift",
       storyline: "A teenager becomes a major competitor in the world of drift racing after moving in with his father in Tokyo to avoid a jail sentence in America.",
-      remote_cover_url: Faker::LoremPixel.image,
+      cover: File.open(Rails.root.join("spec", "fixtures", "files", "images", "placeholder.png")),
+      trailer: File.open(Rails.root.join("spec", "fixtures", "files", "videos", "placeholder.mp4")),
       imdb_id: "tt0463985",
       imdb_rating: 6.0,
       minutes: 104,
@@ -30,8 +31,13 @@ RSpec.describe Movie, type: :model do
   end
 
   it "is not valid without a cover" do
-    model = build(:movie, remote_cover_url: nil)
+    model = build(:movie, cover: nil)
     expect(model).not_to be_valid
+  end
+
+  it "is valid without a trailer" do
+    model = build(:movie, trailer: nil)
+    expect(model).to be_valid
   end
 
   it "is not valid without an imdb id" do
