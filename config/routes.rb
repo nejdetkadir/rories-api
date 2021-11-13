@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       # resources
       resources :genres, only: [:index, :show]
       resources :cast, only: [:show]
+      resources :movies, only: [:index, :show]
     end
   end
 end

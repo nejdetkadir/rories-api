@@ -16,7 +16,7 @@ class Cast < ApplicationRecord
   def as_json(options = {})
     super(options).merge({
       following_count: following.count,
-      roles_in_movies: {
+      roles: {
         writer: handle_role(movie_cast.writer),
         director: handle_role(movie_cast.director),
         star: handle_role(movie_cast.star)
@@ -24,16 +24,18 @@ class Cast < ApplicationRecord
     })
   end
 
-  def handle_role(association)
-    association.as_json(include: [
-      :movie => {
-        only: [:id, :title],
-        include: [
-          :genres => {
-            only: [:id, :name]
-          }
-        ]
-      }
-    ], only: [])
-  end
+  private
+
+    def handle_role(association)
+      association.as_json(include: [
+        :movie => {
+          only: [:id, :title],
+          include: [
+            :genres => {
+              only: [:id, :name]
+            }
+          ]
+        }
+      ], only: [])
+    end
 end

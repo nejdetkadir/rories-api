@@ -16,8 +16,32 @@ class Movie < ApplicationRecord
 
   has_many :movie_genres
   has_many :genres, through: :movie_genres
+  
+  def as_json(options = {})
+    super(options).merge({
+      following_count: following.count,
+      cast: {
+        writer: handle_cast(movie_cast.writer),
+        director: handle_cast(movie_cast.director),
+        star: handle_cast(movie_cast.star)
+      }
+    })
+  end
 
   def set_success(format, opts)
     self.success = true
   end
+
+  private
+
+    def handle_cast(association)
+      association.as_json(include: [
+        :cast => {
+          only: [
+            :id,
+            :fullname
+          ]
+        }
+      ], only: [])
+    end
 end
