@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts = {})
-    render json: resource, status: :ok
+    render json: resource, status: resource.id.nil? ? :unauthorized : :ok
   end
 
   def respond_to_on_destroy
