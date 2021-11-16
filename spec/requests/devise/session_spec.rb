@@ -22,7 +22,7 @@ RSpec.describe "Devise::Sessions", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "returns authorization bearer token on header" do
+      it "returns authorization bearer token on headers" do
         expect(response.headers["Authorization"]).not_to eq(nil)
       end
     end
