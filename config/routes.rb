@@ -16,7 +16,10 @@ Rails.application.routes.draw do
         delete '/unfollow', to: 'cast#unfollow'
       end
 
-      resources :movies, only: [:index, :show]
+      resources :movies, only: [:index, :show] do
+        get '/follow', to: 'movies#follow'
+        delete '/unfollow', to: 'movies#unfollow'
+      end
     end
   end
 end
