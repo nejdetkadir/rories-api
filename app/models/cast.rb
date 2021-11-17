@@ -1,7 +1,7 @@
 class Cast < ApplicationRecord
   # validations
-  validates_presence_of [:fullname, :biography, :image]
-  validates_uniqueness_of [:fullname, :biography]
+  validates_presence_of [:fullname, :biography]
+  validates_uniqueness_of [:fullname]
 
   # mounts
   mount_uploader :image, ImageUploader
