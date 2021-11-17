@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
       # resources
       resources :genres, only: [:index, :show]
-      resources :cast, only: [:show]
+      resources :cast, only: [:show] do
+        get '/follow', to: 'cast#follow'
+        delete '/unfollow', to: 'cast#unfollow'
+      end
       resources :movies, only: [:index, :show]
     end
   end

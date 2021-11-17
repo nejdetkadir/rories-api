@@ -10,7 +10,7 @@ class UserFollowing < ApplicationRecord
   before_save :check_following_type
 
   def check_following_type
-    errors.add(:user, "can follow only cast, movies or genres") if !can_be_follow.include?(self.followable_type)
+    errors.add(:user, "can follow only cast, movies or genres") if !can_follow.include?(self.followable_type)
   end
 
   def can_follow
