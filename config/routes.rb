@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     scope :v1, module: :v1 do
       devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
 
+      get '/feed', to: 'feed#index'
+
       # resources
       resources :genres, only: [:index, :show] do
         get '/follow', to: 'genres#follow'
