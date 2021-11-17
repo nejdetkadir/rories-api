@@ -14,15 +14,12 @@ class Api::V1::GenresController < Api::V1::FollowableController
   def show
     @movies = @genre.movies.page(params[:page])
 
-    render json: @movies, status: :ok, except: [
-      :created_at,
-      :updated_at,
-      :success
-    ], include: [
-      :genres => {
-        except: [:created_at, :updated_at],
-      }
-    ]
+    @movies = { is_following: true, movies: @movies.as_json(
+      include: movies_include,
+      except: movies_except
+      ) } if check_user_following(@genre)
+
+    render json: @movies, status: :ok, include: movies_include, except: movies_except
   end
 
   def follow
@@ -32,6 +29,24 @@ class Api::V1::GenresController < Api::V1::FollowableController
   def unfollow
     super @genre
   end
+
+  protected
+
+    def movies_include
+      [
+        :genres => {
+          except: [:created_at, :updated_at],
+        }
+      ]
+    end
+
+    def movies_except
+      [
+        :created_at,
+        :updated_at,
+        :success
+      ]
+    end
 
   private
 
