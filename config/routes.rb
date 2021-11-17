@@ -9,17 +9,17 @@ Rails.application.routes.draw do
 
       # resources
       resources :genres, only: [:index, :show] do
-        get '/follow', to: 'genres#follow'
+        post '/follow', to: 'genres#follow'
         delete '/unfollow', to: 'genres#unfollow'
       end
 
       resources :cast, only: [:show] do
-        get '/follow', to: 'cast#follow'
+        post '/follow', to: 'cast#follow'
         delete '/unfollow', to: 'cast#unfollow'
       end
 
       resources :movies, only: [:index, :show] do
-        get '/follow', to: 'movies#follow'
+        post '/follow', to: 'movies#follow'
         delete '/unfollow', to: 'movies#unfollow'
       end
     end

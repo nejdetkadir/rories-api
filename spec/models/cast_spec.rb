@@ -34,9 +34,9 @@ RSpec.describe Cast, type: :model do
     expect(model.dup).not_to be_valid  
   end
 
-  it "is not valid without an image" do
+  it "is valid without an image" do
     model = build(:cast, image: nil)
-    expect(model).not_to be_valid
+    expect(model).to be_valid
   end
 
   it "should have many following" do

@@ -37,7 +37,7 @@ RSpec.describe "Devise::Registrations", type: :request do
         }.to_json, headers: @headers
       }
 
-      it "returns status code 401" do
+      it "returns status code 422" do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
@@ -57,7 +57,7 @@ RSpec.describe "Devise::Registrations", type: :request do
         }.to_json, headers: @headers
       }
 
-      it "returns status code 401" do
+      it "returns status code 422" do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
