@@ -1,5 +1,6 @@
-class Api::V1::GenresController < ApplicationController
+class Api::V1::GenresController < Api::V1::FollowableController
   before_action :set_genre, only: [:show]
+  before_action :set_genre_for_followable, only: [:follow, :unfollow]
 
   def index
     @genres = Genre.all
@@ -24,7 +25,19 @@ class Api::V1::GenresController < ApplicationController
     ]
   end
 
+  def follow
+    super @genre
+  end
+
+  def unfollow
+    super @genre
+  end
+
   private
+
+    def set_genre_for_followable
+      @genre = Genre.find(params[:genre_id])
+    end
 
     def set_genre
       @genre = Genre.find(params[:id])

@@ -6,11 +6,16 @@ Rails.application.routes.draw do
       devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
 
       # resources
-      resources :genres, only: [:index, :show]
+      resources :genres, only: [:index, :show] do
+        get '/follow', to: 'genres#follow'
+        delete '/unfollow', to: 'genres#unfollow'
+      end
+
       resources :cast, only: [:show] do
         get '/follow', to: 'cast#follow'
         delete '/unfollow', to: 'cast#unfollow'
       end
+
       resources :movies, only: [:index, :show]
     end
   end
