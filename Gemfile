@@ -19,6 +19,9 @@ gem 'puma', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# https://github.com/activerecord-hackery/ransack
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 # Pagination -> https://github.com/kaminari/kaminari
 gem 'kaminari'
 

@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 25c5c9dfec216a5fafcd90b8893abcfe19460e50
+  specs:
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: f7221ec2e01b50362e94cb9fb61b6a2eced85328
   branch: master
@@ -272,6 +281,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.1)
+  ransack!
   rspec-rails (~> 5.0.0)
   ruby-progressbar
   spring
