@@ -19,8 +19,10 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# rails-dotenv gem
-Dotenv::Railtie.load
+if !Rails.env.production?
+  # rails-dotenv gem
+  Dotenv::Railtie.load
+end
 
 module RoriesApi
   class Application < Rails::Application
