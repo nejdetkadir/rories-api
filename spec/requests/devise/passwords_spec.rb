@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Devise::Passwords", type: :request do
   before {
     @headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    @user = create(:user, email: "nejdetkadir.550@gmail.com")
   }
 
   describe "POST /password" do
@@ -102,7 +103,7 @@ RSpec.describe "Devise::Passwords", type: :request do
   def reset_password_with_email
     post user_password_path, params: {
       user: {
-        email: create(:user).email
+        email: @user.email
       }
     }.to_json, headers: @headers
   end
