@@ -1,3 +1,4 @@
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/11695464-2633ef74-01cc-41fe-b3fa-47bc82cbfba3?action=collection%2Ffork&collection-url=entityId%3D11695464-2633ef74-01cc-41fe-b3fa-47bc82cbfba3%26entityType%3Dcollection%26workspaceId%3De1df351f-1989-4f99-b41c-314c5d42d143)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d0a6de7fa889487f9611ee74b8b7d8a7)](https://www.codacy.com/gh/nejdetkadir/rories-api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nejdetkadir/rories-api&amp;utm_campaign=Badge_Grade)
 
 # RORIES API
@@ -65,8 +66,11 @@ Movies API with Ruby on Rails API
 Create a file named ".env" in the root directory and fill its contents as follows.
 ```ruby
 DEVISE_JWT_SECRET_KEY=X
-GMAIL_USERNAME=X
-GMAIL_PASSWORD=X
+MAIL_USERNAME=X
+MAIL_PASSWORD=X
+MAIL_ADDRESS=X
+MAIL_PORT=X
+MAIL_DOMAIN=X
 RESET_PASSWORD_URL=X
 ```
 
