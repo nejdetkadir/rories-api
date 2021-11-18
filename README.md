@@ -4,6 +4,13 @@
 Movies API with Ruby on Rails API
 ![database](docs/database.png)
 
+# Features
+- User can sign up / log in / change the password
+- User can follow movies / genres / cast(star/director/writer)
+- The system should suggest movies based on our follows
+- Writed unit test with rspec
+- Authentication periods are created with devise and devise-jwt 
+
 # Installation
 ## Prerequisites
 - [Ruby](https://rvm.io/)
