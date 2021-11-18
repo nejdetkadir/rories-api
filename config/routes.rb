@@ -22,6 +22,9 @@ Rails.application.routes.draw do
         post '/follow', to: 'movies#follow'
         delete '/unfollow', to: 'movies#unfollow'
       end
+
+      # search movies
+      post 'movies/search', to: 'movies#search'
     end
   end
 end

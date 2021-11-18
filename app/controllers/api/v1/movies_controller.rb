@@ -31,6 +31,12 @@ class Api::V1::MoviesController < Api::V1::FollowableController
     render json: @movie, status: :ok, except: movie_except, include: movie_include
   end
 
+  def search
+    @q = Movie.ransack(search_params)
+
+    render json: @q.result.limit(24), status: :ok, except: movie_except, include: movie_include
+  end
+
   def follow
     super @movie
   end
@@ -60,6 +66,10 @@ class Api::V1::MoviesController < Api::V1::FollowableController
     end
 
   private
+
+    def search_params
+      params.require(:q).permit(:title_cont)
+    end
 
     def set_movie_for_followable
       @movie = Movie.find(params[:movie_id])

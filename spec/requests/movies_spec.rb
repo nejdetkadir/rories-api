@@ -57,4 +57,31 @@ RSpec.describe "Movies", type: :request do
       end
     end
   end
+
+  describe "POST /search" do
+    before {
+      # any movies
+      create(:movie)
+
+      @movie = create(:movie)
+    }
+
+    describe "search movie with by title" do
+      before {
+        post movies_search_path, params: {
+          q: {
+            title_cont: @movie.title[0..3]
+          }
+        }.to_json, headers: @headers
+      }
+
+      it "returns status code 200" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "returns movies with by searching params" do
+        expect(JSON.parse(response.body).first["id"]).to eq(@movie.id)
+      end
+    end
+  end
 end
