@@ -27,6 +27,7 @@ gem 'kaminari'
 
 # Image Processing -> https://github.com/carrierwaveuploader/carrierwave
 gem 'carrierwave', '~> 2.0'
+gem "fog-aws"
 
 # https://github.com/rheaton/carrierwave-video
 gem 'carrierwave-video'
