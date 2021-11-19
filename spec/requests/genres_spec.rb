@@ -4,11 +4,14 @@ require 'devise/jwt/test_helpers'
 RSpec.describe "Genres", type: :request do
   before {
     @user = create(:user)
-    @headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    @headers = Devise::JWT::TestHelpers.auth_headers({ 
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }, @user)
   }
 
   describe "GET /index" do
-    before { get genres_path }
+    before { get genres_path, headers: @headers }
 
     it "returns status code 200" do
       expect(response).to have_http_status(:ok)
@@ -20,7 +23,7 @@ RSpec.describe "Genres", type: :request do
   end
 
   describe "GET /:id" do
-    before { get genre_path(create(:genre)) }
+    before { get genre_path(create(:genre)), headers: @headers }
 
     it "returns status code 200" do
       expect(response).to have_http_status(:ok)
@@ -38,7 +41,7 @@ RSpec.describe "Genres", type: :request do
 
     describe "follow first time" do
       before {
-        post genre_follow_path(@genre), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post genre_follow_path(@genre), headers: @headers
       }
 
       it "returns status code 201" do
@@ -49,7 +52,7 @@ RSpec.describe "Genres", type: :request do
     describe "follow second timme" do
       before {
         @user.follow(@genre)
-        post genre_follow_path(@genre), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post genre_follow_path(@genre), headers: @headers
       }
 
       it "returns status code 422" do

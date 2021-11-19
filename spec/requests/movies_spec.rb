@@ -4,11 +4,14 @@ require 'devise/jwt/test_helpers'
 RSpec.describe "Movies", type: :request do
   before {
     @user = create(:user)
-    @headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    @headers = Devise::JWT::TestHelpers.auth_headers({ 
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }, @user)
   }
 
   describe "GET /index" do
-    before { get movies_path }
+    before { get movies_path, headers: @headers }
 
     it "returns status code 200" do
       expect(response).to have_http_status(:ok)
@@ -20,7 +23,7 @@ RSpec.describe "Movies", type: :request do
   end
 
   describe "GET /:id" do
-    before { get movie_path(create(:movie)) }
+    before { get movie_path(create(:movie)), headers: @headers }
 
     it "returns status code 200" do
       expect(response).to have_http_status(:ok)
@@ -38,7 +41,7 @@ RSpec.describe "Movies", type: :request do
 
     describe "follow first time" do
       before {
-        post movie_follow_path(@movie), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post movie_follow_path(@movie), headers: @headers
       }
 
       it "returns status code 201" do
@@ -49,7 +52,7 @@ RSpec.describe "Movies", type: :request do
     describe "follow second timme" do
       before {
         @user.follow(@movie)
-        post movie_follow_path(@movie), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post movie_follow_path(@movie), headers: @headers
       }
 
       it "returns status code 422" do

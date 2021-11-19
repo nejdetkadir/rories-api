@@ -40,25 +40,25 @@ Movies API with Ruby on Rails API
 #### Genres
 | Route | HTTP Verb | Request Body | Header Body | Description |
 | --- | --- | --- | --- | --- |
-| /api/v1/genres | `GET` | Empty | Empty | Returns genres |
-| /api/v1/genres/:id | `GET` | Empty | Empty | Returns resource with by id |
+| /api/v1/genres | `GET` | Empty | Authentication: Bearer Token | Returns genres |
+| /api/v1/genres/:id | `GET` | Empty | Authentication: Bearer Token | Returns resource with by id |
 | /api/v1/genres/:id/follow| `POST` | Empty | Authentication: Bearer Token | Returns id of resource or errors |
 | /api/v1/genres/:id/unfollow| `DELETE` | Empty | Authentication: Bearer Token | Returns status |
 
 #### Movies
 | Route | HTTP Verb | Request Body | Header Body | Description |
 | --- | --- | --- | --- | --- |
-| /api/v1/movies | `GET` | Empty | Authentication: Bearer Token (if user signed in) | Returns movies (limit 25) |
-| /api/v1/movies/search | `POST` | ```{ q: { title_cont: "Fast"}}``` | Empty | Returns result of searching |
-| /api/v1/movies?page=:page | `GET` | Empty | Authentication: Bearer Token (if user signed in) | Returns next movies (limit 25) |
-| /api/v1/movies/:id| `GET` | Empty | Authentication: Bearer Token (if user signed in) | Returns resource with by id |
+| /api/v1/movies | `GET` | Empty | Authentication: Bearer Token | Returns movies (limit 25) |
+| /api/v1/movies/search | `POST` | ```{ q: { title_cont: "Fast"}}``` | Authentication: Bearer Token | Returns result of searching |
+| /api/v1/movies?page=:page | `GET` | Empty | Authentication: Bearer Token | Returns next movies (limit 25) |
+| /api/v1/movies/:id| `GET` | Empty | Authentication: Bearer Token | Returns resource with by id |
 | /api/v1/movies/:id/follow| `POST` | Empty | Authentication: Bearer Token | Returns id of resource or errors |
 | /api/v1/movies/:id/unfollow| `DELETE` | Empty | Authentication: Bearer Token | Returns status |
 
 #### Cast
 | Route | HTTP Verb | Request Body | Header Body | Description |
 | --- | --- | --- | --- | --- |
-| /api/v1/cast/:id| `GET` | Empty | Authentication: Bearer Token (if user signed in) | Returns resource with by id |
+| /api/v1/cast/:id| `GET` | Empty | Authentication: Bearer Token | Returns resource with by id |
 | /api/v1/cast/:id/follow| `POST` | Empty | Authentication: Bearer Token | Returns id of resource or errors |
 | /api/v1/cast/:id/unfollow| `DELETE` | Empty | Authentication: Bearer Token | Returns status |
 

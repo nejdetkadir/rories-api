@@ -1,6 +1,4 @@
-class Api::V1::FollowableController < ApplicationController
-  before_action :authenticate!, only: [:follow, :unfollow]
-
+class Api::V1::FollowableController < ApiController
   def follow(followable)
     @followable = current_user.follow(followable)
 

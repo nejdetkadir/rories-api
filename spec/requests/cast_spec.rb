@@ -4,11 +4,14 @@ require 'devise/jwt/test_helpers'
 RSpec.describe "Cast", type: :request do
   before {
     @user = create(:user)
-    @headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    @headers = Devise::JWT::TestHelpers.auth_headers({ 
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }, @user)
   }
 
   describe "GET /show" do
-    before { get cast_path(create(:cast)) }
+    before { get cast_path(create(:cast)), headers: @headers }
 
     it "returns status code 200" do
       expect(response).to have_http_status(:ok)
@@ -26,7 +29,7 @@ RSpec.describe "Cast", type: :request do
 
     describe "follow first time" do
       before {
-        post cast_follow_path(@cast), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post cast_follow_path(@cast), headers: @headers
       }
 
       it "returns status code 201" do
@@ -37,7 +40,7 @@ RSpec.describe "Cast", type: :request do
     describe "follow second timme" do
       before {
         @user.follow(@cast)
-        post cast_follow_path(@cast), headers: Devise::JWT::TestHelpers.auth_headers(@headers, @user)
+        post cast_follow_path(@cast), headers: @headers
       }
 
       it "returns status code 422" do

@@ -1,6 +1,4 @@
-class Api::V1::FeedController < ApplicationController
-  before_action :authenticate!
-
+class Api::V1::FeedController < ApiController
   def index
     @movie_ids = []
 
