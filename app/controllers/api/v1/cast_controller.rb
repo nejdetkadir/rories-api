@@ -3,14 +3,12 @@ class Api::V1::CastController < Api::V1::FollowableController
   before_action :set_cast_for_followable, only: [:follow, :unfollow]
 
   def show
-    @cast = @cast.as_json.merge({
-      is_following: true
-    }) if check_user_following(@cast)
-
-    render json: @cast, status: :ok, except: [
+    render json: @cast.as_json(except: [
       :created_at,
-      :updated_at
-    ]
+      :updated_at]
+    ).merge({
+      is_following: current_user.is_following?(@cast)
+    }), status: :ok
   end
 
   def follow

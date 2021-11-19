@@ -23,18 +23,37 @@ class Api::V1::MoviesController < Api::V1::FollowableController
   end
 
   def show
-    @movie = { is_following: true, movie: @movie.as_json(
-      include: movie_include,
-      except: movie_except
-    ) } if check_user_following(@movie)
-
-    render json: @movie, status: :ok, except: movie_except, include: movie_include
+    render json: @movie.as_json(
+      include: [
+        :genres => {
+          except: [
+            :created_at,
+            :updated_at
+          ]
+        }
+      ], except: [
+        :created_at,
+        :updated_at
+      ]
+    ).merge({
+      is_following: current_user.is_following?(@movie)
+    }), status: :ok
   end
 
   def search
     @q = Movie.ransack(search_params)
 
-    render json: @q.result.limit(24), status: :ok, except: movie_except, include: movie_include
+    render json: @q.result.limit(24), status: :ok, except: [
+      :created_at,
+      :updated_at
+    ], include: [
+      :genres => {
+        except: [
+          :created_at,
+          :updated_at
+        ]
+      }
+    ]
   end
 
   def follow
@@ -44,26 +63,6 @@ class Api::V1::MoviesController < Api::V1::FollowableController
   def unfollow
     super @movie
   end
-
-  protected
-
-    def movie_include
-      [
-        :genres => {
-          except: [
-            :created_at,
-            :updated_at
-          ]
-        }
-      ]
-    end
-
-    def movie_except
-      [
-        :created_at,
-        :updated_at
-      ]
-    end
 
   private
 

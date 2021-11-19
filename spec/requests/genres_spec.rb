@@ -30,7 +30,7 @@ RSpec.describe "Genres", type: :request do
     end
 
     it "returns all movies of genre" do
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(JSON.parse(response.body)["movies"].size).to eq(0)
     end
   end
 
