@@ -20,7 +20,7 @@ namespace :import do
     Cast.create(
       fullname: fullname,
       biography: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      image: File.open(Rails.root.join("spec", "fixtures", "files", "images", "placeholder.png"))
+      image: File.open(Rails.root.join("db", "static_data", "images", "default-cast.png"))
     )
   end
 end
