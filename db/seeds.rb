@@ -9,7 +9,7 @@
 # Import all static data
 Rake::Task['import:all'].invoke
 
-progress_bar = ProgressBar.create(:title => "Creating demo records", :starting_at => 0, :total => 5)
+# progress_bar = ProgressBar.create(:title => "Creating demo records", :starting_at => 0, :total => 5)
 
 # demo records
 # 5.times {
