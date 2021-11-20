@@ -17,8 +17,17 @@ class Api::V1::FeedController < ApiController
     @movie_ids += get_from_movie_genres({
       genre_id: genre_ids_of_following_movies
       }, :movie_id)
-
-    render json: Movie.where(id: @movie_ids.uniq).page(params[:page])
+    
+    @movies = Movie.where(id: @movie_ids.uniq).page(params[:page])
+    
+    render json: @movies, status: :ok, include: [
+      :genres => {
+        only: [
+          :id,
+          :name
+        ]
+      }
+    ]
   end
 
   private
