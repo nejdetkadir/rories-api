@@ -11,7 +11,7 @@ namespace :import do
         released_at: movie["title"].split("(")[1].chop,
         imdb_rating: movie["imdb_rating"],
         minutes: movie["minutes"],
-        imdb_id: "tt" + movie["imdb_id"].to_s,
+        imdb_id: "tt" + ("0" * (7 - movie["imdb_id"].to_s.size)) + movie["imdb_id"].to_s,
         remote_cover_url: movie["remote_cover_url"].split("@")[0] + "@#{'@' if movie['remote_cover_url'].include?('@@')}.jpg"
       )
 
